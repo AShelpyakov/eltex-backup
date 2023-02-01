@@ -1,0 +1,5 @@
+---
+username: admin
+password: <your password>
+data:
+  last_command: 'show me end'

@@ -1,0 +1,13 @@
+---
+home-eltex:
+  hostname: 192.168.1.1
+  groups:
+    - eltex
+home-eltex2:
+  hostname: 192.168.1.2
+  groups:
+    - eltex
+home-eltex3:
+  hostname: 192.168.1.3
+  groups:
+    - eltex

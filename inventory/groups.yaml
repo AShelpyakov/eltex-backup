@@ -1,0 +1,11 @@
+---
+eltex:
+  platform: eltex
+  data:
+    backup_commands:
+      - 'show run'
+      - 'show vlan'
+    delete_patterns:
+      - '^[0-9]+:.*%[A-Z-]+:'
+    change_arguments:
+      - ['password encrypted .*', 'password <removed>']

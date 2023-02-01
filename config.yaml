@@ -1,0 +1,19 @@
+---
+inventory:
+  plugin: SimpleInventory
+  options:
+    host_file: 'inventory/hosts.yaml'
+    group_file: 'inventory/groups.yaml'
+    defaults_file: 'inventory/defaults.yaml'
+runner:
+  plugin: threaded
+  options:
+    num_workers: 10
+user_defined:
+  smtp:
+    smtp_server: smtp.example.com
+    smtp_port: 465
+    smtp_sender: sender@example.com
+    smtp_receiver: receiver@example.com
+    smtp_password: <your password>
+  backup_dir: 'backups/'
