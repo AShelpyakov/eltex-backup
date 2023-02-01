@@ -15,7 +15,7 @@ TIME_FORMAT: str = '%d-%b-%Y %H:%M:%S'
 PROBLEM_MESSAGE = Template(
     'Subject: Problem hosts\n\nHosts with problems:\n$hosts'
 )
-DIFF_MESSAGE = Template('Subject: Diff configs\n\n@diff')
+DIFF_MESSAGE = Template('Subject: Diff configs\n\n$diff')
 
 
 
@@ -34,7 +34,7 @@ def send_mail(
 ) -> None:
     context = ssl.create_default_context()
     with smtplib.SMTP_SSL(smtp_server, smtp_port, context=context) as server:
-        server.login(smtp_sender, smtp_password)
+        server.login()
         server.sendmail(smtp_sender, smtp_receiver, message)
 
 
@@ -112,9 +112,9 @@ if __name__ == '__main__':
 
     repo = git.Repo.init(nr.config.user_defined['backup_dir'])
     repo_diff: str = repo.git.diff(None)
+    repo.index.add('**')
+    repo.index.commit(datetime.now().strftime(TIME_FORMAT))
     if repo_diff:
-        repo.index.add('**')
-        repo.index.commit(datetime.now().strftime(TIME_FORMAT))
         send_mail(
             message=DIFF_MESSAGE.substitute(diff=repo_diff),
             **nr.config.user_defined['smtp'],
