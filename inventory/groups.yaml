@@ -9,3 +9,18 @@ eltex:
       - '^[0-9]+:.*%[A-Z-]+:'
     change_arguments:
       - ['password encrypted .*', 'password <removed>']
+      - ['ascii-text encrypted .*', 'ascii-text <removed>']
+eltex-mes:
+  platform: eltex
+  data:
+    backup_commands:
+      - 'set cli pagination off'
+      - 'show run'
+      - 'show vlan'
+    delete_patterns:
+      - '^[0-9]+:.*%[A-Z-]+:'
+    change_arguments:
+      - ['password encrypted .*', 'password <removed>']
+      - ['ascii-text encrypted .*', 'ascii-text <removed>']
+      - ['key encrypted .*', 'key encrypted <removed>']
+      - ['snmp user .*', 'snmp user <removed>']
